@@ -90,6 +90,8 @@ async def handle_message(event):
             await event.respond(
                 "❌ Invalid date/time format. Please use the format: YYYY-MM-DD HH:MM AM/PM.\n\n"
                 "Example: 2023-12-31 11:59 PM"
+                "\n\n"
+                "If you want to restart, type /start."
             )
 
     elif event.text.lower() == "reset":
@@ -116,6 +118,8 @@ async def plan_reminder_checker():
                 f"Set on: {plan['created_at']}\n"
                 f"Reminder Date: {plan['reminder_time']}\n\n"
                 "Did you achieve your goal? Take a moment to reflect!"
+                "\n\n"
+                "Click /start to set a new plan."
             )
             plans.update_one({"_id": plan["_id"]}, {"$set": {"notified": True}})
         
